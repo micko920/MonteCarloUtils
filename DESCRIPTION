@@ -1,0 +1,19 @@
+Package: MonteCarloUtils
+Title: Utilities for doing Monte Carlo estimation
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Michael",
+           family = "Green",
+           role = c("aut", "cre"),
+           email = "github@ftt6283.org")
+Description: This package has tested functions which can be used to generate Monte Carlo samples of other functions.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    magrittr
