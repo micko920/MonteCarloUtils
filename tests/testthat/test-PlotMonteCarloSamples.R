@@ -6,7 +6,10 @@ test_that("Simple constant calculation", {
   calc_args <- function() {
     return(list(10))
   }
-  testthat::expect_output(samples <- StableMonteCarloSamples(calc, calc_args, 11, limit = 100, debug = TRUE))
+  testthat::expect_output(samples <- StableMonteCarloSamples(calc, calc_args, 11, limit = 100, debug = TRUE, trace = TRUE))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+
+  expect_silent(samples <- StableMonteCarloSamples(calc, calc_args, 11, limit = 100, debug = FALSE))
   testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
 })
 
@@ -18,7 +21,7 @@ test_that("Functions with variables with large variance", {
   set.seed(8121976)
   testthat::expect_output(samples <- StableMonteCarloSamples(function(v) {
     return(v + 1)
-  }, calc_args, 501, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE))
+  }, calc_args, 501, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE, trace = TRUE))
   # only does 64 stop condition evaluations
 
   testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
@@ -32,7 +35,7 @@ test_that("Functions with variables with large variance", {
   set.seed(8121976)
   testthat::expect_output(samples <- StableMonteCarloSamples(function(a, b) {
     return(a / b)
-  }, calc_args, 90, tolerance = 0.013459, limit = 3.0e+03, debug = TRUE))
+  }, calc_args, 90, tolerance = 0.013459, limit = 3.0e+03, debug = TRUE, trace = TRUE))
   # only does 15 stop condition evaluations
 
   testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
@@ -46,7 +49,7 @@ test_that("Functions with bad formulas and variance", {
   set.seed(8121976)
   testthat::expect_output(samples <- StableMonteCarloSamples(function(v) {
     return(10^v + v^3)
-  }, calc_args, 10653, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE))
+  }, calc_args, 10653, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE, trace = TRUE))
   # only does 56 stop condition evaluations
 
   testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
@@ -59,7 +62,7 @@ test_that("Functions with bad formulas and variance", {
   set.seed(8121976)
   testthat::expect_output(samples <- StableMonteCarloSamples(function(a, b) {
     return(a / (3.0^b))
-  }, calc_args, 1.42, tolerance = 0.019, limit = 3.0e+03, debug = TRUE))
+  }, calc_args, 1.42, tolerance = 0.019, limit = 3.0e+03, debug = TRUE, trace = TRUE))
   # only does 27 stop condition evaluations
 
   testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))

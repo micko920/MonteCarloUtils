@@ -98,7 +98,7 @@ test_that("Functions with bad formulas and variance", {
     return(a / (3.0^b))
   }, calc_args, 1.4373283, 1.4373283, 0.01333503, 5, limit = 3.0e+03)
 
-  testthat::expect_equal(signif(median(samples),8), 1.4373283)
+  testthat::expect_equal(signif(median(samples), 8), 1.4373283)
   compare_summary_equal(samples, 0.0000606, 0.09860, 1.440, 40.900, 22.400, 859.000)
   expect_equal(length(samples), 2571)
   expect_lt(length(samples), 3.0e+03)

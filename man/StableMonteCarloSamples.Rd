@@ -44,7 +44,4 @@ calc_args <- function() {
   return(list(10))
 }
 StableMonteCarloSamples(calc_estimate, calc_args, 11) # returns samples
-
-
-
 }

@@ -108,7 +108,7 @@ test_that("Functions with bad formulas and variance", {
   }, calc_args, 1.42, tolerance = 0.019, limit = 3.0e+03)
   # only does 27 stop condition evaluations
 
-  testthat::expect_equal(signif(median(samples),8), 1.4135286)
+  testthat::expect_equal(signif(median(samples), 8), 1.4135286)
   compare_summary_equal(samples, 0.0000606, 0.10100, 1.410, 41.000, 22.900, 859.000)
   expect_equal(length(samples), 2812)
   expect_lt(length(samples), 3.0e+03)

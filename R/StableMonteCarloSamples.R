@@ -21,9 +21,6 @@
 #'   return(list(10))
 #' }
 #' StableMonteCarloSamples(calc_estimate, calc_args, 11) # returns samples
-#'
-#'
-#'
 #' @export
 StableMonteCarloSamples <- function(calc,
                                     calc_args,
@@ -33,10 +30,11 @@ StableMonteCarloSamples <- function(calc,
                                     start = 10,
                                     limit = 1e+8,
                                     rolling_window = 3,
-                                    debug = FALSE) {
+                                    debug = FALSE,
+                                    trace = FALSE) {
   runs <- start - 1 - rolling_window
 
-  if (debug) print(c(estimate, tolerance))
+  if (trace) print(c(estimate, tolerance))
   lowerCI <- (1 - confidence) / 2
   upperCI <- (1 - lowerCI)
 
@@ -69,16 +67,16 @@ StableMonteCarloSamples <- function(calc,
     batch <- runs - length(mcResults)
     if (batch > 0) mcResults <- append(mcResults, GenMonteCarloSamples(calc, calc_args, batch))
     qq <- quantile(mcResults, probs = c(lowerCI, 0.5, upperCI))
-    if (debug) print(c(runs, qq, tolerance, trend))
+    if (trace) print(c(runs, qq, tolerance, trend))
     result <- rbind(result, c(qq[[1]], qq[[3]], qq[[3]] - qq[[1]]))
     mcSD <- rbind(mcSD, c(runs, sd(result[, "DIFF"])))
     mcLCI <- rbind(mcLCI, c(runs, mean(result[, "LCI"])))
     mcUCI <- rbind(mcUCI, c(runs, mean(result[, "UCI"])))
-    loops <- loops +1
+    loops <- loops + 1
   }
-  if (debug) print(c(loops, runs))
+  if (trace) print(c(loops, runs))
   if (debug) {
-    attr(mcResults,"debug") <- list(summary=summary(mcResults), total_runs=runs,samples=mcSD,lci_samples=mcLCI,uci_samples=mcUCI)
+    attr(mcResults, "debug") <- list(summary = summary(mcResults), total_runs = runs, samples = mcSD, lci_samples = mcLCI, uci_samples = mcUCI)
   }
   return(mcResults)
 }
