@@ -29,6 +29,5 @@ GenMonteCarloSamples <- function(calc, # Function to sample
                                  calc_args, # function to create arguments for func being sampled
                                  iterations = 100 # Number of times to sample function
 ) {
-  # replicate is the opposite order of params to rep!
   return(replicate(iterations, do.call(calc, calc_args())))
 }

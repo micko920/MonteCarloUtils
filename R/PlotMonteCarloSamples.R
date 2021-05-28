@@ -13,7 +13,7 @@ PlotMonteCarloSamples <- function(o, est, title = "") {
 
   s <- quantile(o, probs = c(0, 0.05, 0.5, 0.95, 1))
 
-  values <- subset(o, o > s[2] & o < s[4])
+  values <- subset(o, o > s[1] & o < s[5])
   if (!length(values) > 0) values <- o
   h <- hist(values,
     col = "gray40", breaks = 20, main = title,
@@ -34,7 +34,7 @@ PlotMonteCarloSamples <- function(o, est, title = "") {
     cex = 2
   )
   legend("topleft",
-    legend = c(paste("5%", signif(s[2], 8)), paste("estimate: ", signif(est, 8)), paste("95%", signif(s[5], 8))),
+    legend = c(paste("5%", signif(s[2], 8)), paste("estimate: ", signif(est, 8)), paste("95%", signif(s[4], 8))),
     col = c("orange", "red", "blue"),
     lty = 1, cex = 0.8,
     pch = c("[", "+", "]"),
@@ -45,12 +45,12 @@ PlotMonteCarloSamples <- function(o, est, title = "") {
 
   if ("debug" %in% attributes(attributes(o))$names) {
     mcdebug <- attr(o, "debug")
-    pSD <- plot(mcdebug$samples, ylab = "SD of each set of MC estimates", xlab = "Iterations (log)", log = "x")
+    pSD <- plot(mcdebug$samples, ylab = "SD of CI width for each set of MC estimates", xlab = "Iterations (log)", log = "x")
 
     pQ <- plot(NULL,
       xlim = c(10, mcdebug$total_runs),
       ylim = c(s[1], s[5]),
-      xlab = "Iterations (log)", ylab = "Qunatiles", log = "x"
+      xlab = "Iterations (log)", ylab = "CI", log = "x"
     )
     result <- append(result, pSD)
     result <- append(result, pQ)
