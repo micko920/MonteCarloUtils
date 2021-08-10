@@ -13,7 +13,8 @@ StableMonteCarloSamples(
   start = 10,
   limit = 1e+08,
   rolling_window = 3,
-  debug = FALSE
+  debug = FALSE,
+  trace = FALSE
 )
 }
 \arguments{

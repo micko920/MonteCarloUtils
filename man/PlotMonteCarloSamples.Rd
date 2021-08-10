@@ -4,7 +4,7 @@
 \alias{PlotMonteCarloSamples}
 \title{PlotMonteCarloSamples}
 \usage{
-PlotMonteCarloSamples(o)
+PlotMonteCarloSamples(o, est, title = "")
 }
 \arguments{
 \item{o}{Debug output from StableMonteCarloSamples}

@@ -7,10 +7,10 @@ test_that("Simple constant calculation", {
     return(list(10))
   }
   testthat::expect_output(samples <- StableMonteCarloSamples(calc, calc_args, 11, limit = 100, debug = TRUE, trace = TRUE))
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 11))
 
   expect_silent(samples <- StableMonteCarloSamples(calc, calc_args, 11, limit = 100, debug = FALSE))
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 11))
 })
 
 test_that("Functions with variables with large variance", {
@@ -24,7 +24,7 @@ test_that("Functions with variables with large variance", {
   }, calc_args, 501, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE, trace = TRUE))
   # only does 64 stop condition evaluations
 
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 501))
 
 
   # this needs b to be larger than 1 so as not to trend to infinity
@@ -38,7 +38,7 @@ test_that("Functions with variables with large variance", {
   }, calc_args, 90, tolerance = 0.013459, limit = 3.0e+03, debug = TRUE, trace = TRUE))
   # only does 15 stop condition evaluations
 
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 90))
 })
 
 test_that("Functions with bad formulas and variance", {
@@ -52,7 +52,7 @@ test_that("Functions with bad formulas and variance", {
   }, calc_args, 10653, tolerance = 0.00805, limit = 1.5e+04, debug = TRUE, trace = TRUE))
   # only does 56 stop condition evaluations
 
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 10653))
 
   # this needs b to be larger than 1 so as not to trend to infinity
   calc_args <- function() {
@@ -65,5 +65,5 @@ test_that("Functions with bad formulas and variance", {
   }, calc_args, 1.42, tolerance = 0.019, limit = 3.0e+03, debug = TRUE, trace = TRUE))
   # only does 27 stop condition evaluations
 
-  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples))
+  testthat::expect_silent(plot <- PlotMonteCarloSamples(samples, 1.42))
 })

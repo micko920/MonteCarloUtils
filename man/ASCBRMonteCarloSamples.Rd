@@ -27,29 +27,29 @@ samples The return values from the calc function
 }
 \description{
 \code{ASCBRMonteCarloSamples} returns a list of samples from executing the function
-with arguments. This differs to the GenMonteCarloSamples by traking the
+with arguments. This differs to the GenMonteCarloSamples by tracking the
 samples and stopping when a confidence interval from an estimate is reached.
 Ata, Mustafa Y.. (2007). A convergence criterion for the Monte Carlo
-estimates. Simulation Modelling Practice and Theory. 15. 237-246.
+estimates. Simulation Modeling Practice and Theory. 15. 237-246.
 10.1016/j.simpat.2006.12.002.
 }
 \details{
-This alogorithum has a bug whith stable non variant functions. The 100
+This algorithm has a bug with stable non variant functions. The 100
 minimum run would push the value of z outside the value of zeta and so would
 never end the internal loop. This condition was change from z!=zeta to
 z>zeta to solve this problem.
 
-Using this function requires some pre exisitng understanding of the range
-(CI) to allow the values for zet, upper and lower values. If set incorrectly
-these will mean the algorithum will not end. The limit was added to stop
+Using this function requires some pre existing understanding of the range
+(CI) to allow the values for zeta, upper and lower values. If set incorrectly
+these will mean the algorithm will not end. The limit was added to stop
 these issues
 
-This algoitum evaluates the end condition for every run of the calculation.
+This algorithm evaluates the end condition for every run of the calculation.
 This does not optimise well for unstable functions. It does not do testing
 of the end condition after batches or do estimates of the next batch size
-before testing again.
+before testing again.S
 
-This algorithum has type range issues for the end condition. If the sum of
+This algorithm has type range issues for the end condition. If the sum of
 the results is larger than the type can hold it will overflow.
 }
 \examples{
