@@ -1,6 +1,6 @@
 Package: MonteCarloUtils
 Title: Utilities for doing Monte Carlo estimation
-Version: 1.0.0
+Version: 1.0.1
 Authors@R:
     person(given = "Michael",
            family = "Green",
